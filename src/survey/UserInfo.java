@@ -1,17 +1,31 @@
 package survey;
 
 public class UserInfo implements IUserProfile {
-    private final String name;
-    private final double age;
-    private final String email;
+    private String name;
+    private double age;
+    private String email;
 
     public UserInfo(String name, double age, String email) throws IllegalArgumentException {
-        if(name == null || name.isEmpty()) throw new IllegalArgumentException("Refusing to create UserInfo instance with empty name");
-        if(age <= 13) throw new IllegalArgumentException("Refusing to create UserInfo instance with <= 13 year old age");
-        if(email == null || email.isEmpty()) throw new IllegalArgumentException("Refusing to create UserInfo instance with empty email");
+        setName(name);
+        setAge(age);
+        setEmail(email);
+    }
 
+    @Override
+    public void setName(String name) throws IllegalArgumentException {
+        if(name == null || name.isEmpty()) throw new IllegalArgumentException("Refusing to set an empty name");
         this.name = name;
+    }
+
+    @Override
+    public void setAge(double age) throws IllegalArgumentException {
+        if(age <= 13) throw new IllegalArgumentException("Refusing to set an age of 13 or under");
         this.age = age;
+    }
+
+    @Override
+    public void setEmail(String email) throws IllegalArgumentException {
+        if(email == null || email.isEmpty()) throw new IllegalArgumentException("Refusing to set empty email");
         this.email = email;
     }
 
